@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AdvayX - Watch More. Wait Less.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <img src="img/logo.png" alt="AdvayX Logo" class="logo">
+                <span class="slogan">Watch More. Wait Less.</span>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search movies, anime...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <button id="filterBtn"><i class="fas fa-filter"></i></button>
+            </div>
+        </header>
+
+        <main class="main-content" id="mainContent">
+            <!-- Content will be loaded dynamically -->
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading content...</p>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" data-page="downloads">
+                <i class="fas fa-download"></i>
+                <span>Downloads</span>
+            </a>
+            <a href="#" class="nav-item" data-page="favorites">
+                <i class="fas fa-heart"></i>
+                <span>Favorites</span>
+            </a>
+            <a href="#" class="nav-item" data-page="premium">
+                <i class="fas fa-crown"></i>
+                <span>Premium</span>
+            </a>
+        </nav>
+
+        <div id="adContainer" class="ad-banner">
+            <!-- AdMob banner will be placed here -->
+        </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/downloader.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/scraper.js"></script>
+</body>
+</html>
