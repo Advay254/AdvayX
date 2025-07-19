@@ -4,23 +4,23 @@ services:
     plan: free
     env: node
     buildCommand: |
-      # Install Cordova globally
+      # 1. Install Cordova
       npm install -g cordova
       
-      # Create fresh Cordova project
+      # 2. Create Cordova project
       cordova create AdvayX com.advayx AdvayX
       cd AdvayX
       
-      # Add Android platform (no need for plugins unless essential)
+      # 3. Add Android platform (minimal setup)
       cordova platform add android --nofetch
       
-      # Build APK (faster without signing)
+      # 4. Build APK (debug mode for speed)
       cordova build android --no-update-notifier --debug
       
-      # Move APK to accessible location
+      # 5. Move APK to root for download
       cp platforms/android/app/build/outputs/apk/debug/app-debug.apk ../
       
-      # Go back to root for the fake server
+      # 6. Return to root (critical for server.js)
       cd ..
-    startCommand: node server.js
-    healthCheckPath: /health
+    startCommand: node server.js  # Required to keep service alive
+    healthCheckPath: /health       # Required for free tier
