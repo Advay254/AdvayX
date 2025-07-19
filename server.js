@@ -1,17 +1,17 @@
 const fs = require('fs');
 const http = require('http');
 
-// Minimal server to satisfy Render's port check
 http.createServer((req, res) => {
-  if (req.url === '/health') return res.end('OK');
+  if (req.url === '/health') return res.end('OK'); // Required for Render
   
   if (req.url === '/download') {
-    // Serve the APK
+    // Serve APK
     fs.readFile('app-debug.apk', (err, data) => {
       if (err) {
         res.writeHead(404);
-        return res.end('APK not ready. Check build logs.');
+        return res.end('APK not found. Build may have failed.');
       }
+      res.setHeader('Content-Type', 'application/vnd.android.package-archive');
       res.setHeader('Content-Disposition', 'attachment; filename=AdvayX.apk');
       res.end(data);
     });
@@ -19,7 +19,7 @@ http.createServer((req, res) => {
     res.end(`
       AdvayX Builder<br>
       <a href="/download">Download APK</a><br>
-      Build logs: ${process.env.RENDER_EXTERNAL_URL}/logs
+      <small>If download fails, check build logs at ${process.env.RENDER_EXTERNAL_URL}/logs</small>
     `);
   }
 }).listen(process.env.PORT || 3000);
